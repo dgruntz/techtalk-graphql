@@ -1,0 +1,12 @@
+#### Add product
+POST http://localhost:8080/graphql
+Content-Type: application/json
+
+{"query": "mutation {createProduct(product: {title: \"Take2 Design Clack\", description: \"Eierschalensollbruchstellenverursacher für alle Liebhaber vom klassischen Frühstücksei.\", imageUrl: \"https://www.galaxus.ch/im/Files/2/0/1/4/3/2/4/3/Clack-schwarz-frei-1200x1200.jpg?impolicy=ProductTileImage\" }) { id }}"}
+
+######
+POST http://localhost:8080/graphql
+Content-Type: application/json
+
+{"query": "{products{ title \n description }}"}
+
