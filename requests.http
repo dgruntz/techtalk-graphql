@@ -1,12 +1,56 @@
+#### query all products
+POST http://localhost:8080/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+  products{
+    title
+    description
+  }
+}
+
 #### Add product
 POST http://localhost:8080/graphql
 Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
 
-{"query": "mutation {createProduct(product: {title: \"Take2 Design Clack\", description: \"Eierschalensollbruchstellenverursacher für alle Liebhaber vom klassischen Frühstücksei.\", imageUrl: \"https://www.galaxus.ch/im/Files/2/0/1/4/3/2/4/3/Clack-schwarz-frei-1200x1200.jpg?impolicy=ProductTileImage\" }) { id }}"}
+mutation {
+  createProduct(
+    product: {
+      title: "Take2 Design Clack", 
+      description: "Eierschalensollbruchstellenverursacher für alle Liebhaber vom klassischen Frühstücksei.",
+      imageUrl: "https://www.galaxus.ch/im/Files/2/0/1/4/3/2/4/3/Clack-schwarz-frei-1200x1200.jpg?impolicy=ProductTileImage" 
+    }
+  ) {
+     id
+   }
+}
 
-######
+##### rate product
 POST http://localhost:8080/graphql
 Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
 
-{"query": "{products{ title \n description }}"}
+mutation {
+  rateProduct(productId: 6, customerId: 1, score: 5, comment: "fine") {
+    id
+    product {
+      title
+    }
+  }
+}
 
+##### query meta data
+POST http://localhost:8080/graphql
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query {
+  __type (name: "Product") {
+    name
+    fields {
+      name
+    }
+  }
+}
